@@ -168,7 +168,8 @@ class Notification:
         elif state == 'charging':
             if (percentage != self.last_percentage and
                 remaining != "discharging at zero rate - will never fully discharge" and
-                self.last_notification!="upper_threshold_warning"):
+                self.last_notification!="upper_threshold_warning" and
+                percentage >= self.upper_threshold_warning):
                     self.last_percentage = percentage
                     self.last_notification!="upper_threshold_warning"
                     self.show_notification(type="upper_threshold_warning",
