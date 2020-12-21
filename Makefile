@@ -1,4 +1,4 @@
-SHELL := /bin/sh
+SHELL := /bin/bash
 .SHELLFLAGS := -eu -o pipefail -c
 .DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
