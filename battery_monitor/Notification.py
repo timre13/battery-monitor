@@ -40,11 +40,15 @@ class Notification:
         self.last_notification = ''
         self.notifier = Notify.Notification.new(head, body, icon)
         self.notifier.set_urgency(Notify.Urgency.CRITICAL)
-        try:
-            self.notifier.show()
-        except GLib.GError as e:
-            # fixing GLib.GError: g-dbus-error-quark blindly
-            pass
+
+        # TODO: This is like fighting against ourselves. Make better fix.
+        # silence 'success' notification
+        if (type != "success"):
+            try:
+                self.notifier.show()
+            except GLib.GError as e:
+                # fixing GLib.GError: g-dbus-error-quark blindly
+                pass
         self.config = configparser.ConfigParser()
         self.load_config()
 
